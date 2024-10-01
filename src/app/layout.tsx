@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Bellota } from "next/font/google";
+import Navbar from "../components/Navbar";
+
+const bellota = Bellota({ subsets: ["latin"], weight: ["700"] });
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,8 +17,6 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-
-
 export const metadata: Metadata = {
   title: "One Fifty Days",
   description: "My personal journal",
@@ -26,11 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
-      <body className="max-w-[712px] border-red-500 border mx-auto w-full h-screen">
+    <html lang="en" className={`${bellota.className} antialiased`}>
+      <body className="max-w-[712px] mx-auto w-full h-screen px-4">
+        <Navbar />
         {children}
       </body>
     </html>
