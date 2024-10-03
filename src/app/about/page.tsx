@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <main className="prose">
+    <main className="prose font-bold text-black">
       <h1>So this is how it goes....</h1>
       <p>
         This is a journal about finding myself by reviving my hobby of writing.
@@ -28,7 +28,7 @@ const page = () => {
         self, and revive my hobby and write casually. It most likely will remain
         so at times because this, my friend, is just a journal of my life. No
         ads, no sponsorships, no income. The page views are about as low as my
-        motivation to write. This is reason why I&apos;m starting this journal
+        motivation to write. This is the reason why I&apos;m starting this journal
         in the first place, to get back better at writing again.
       </p>
       <p>

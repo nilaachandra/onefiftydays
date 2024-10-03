@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Bellota } from "next/font/google";
 import Navbar from "../components/Navbar";
+import Footer from "@/components/Footer";
 
 const bellota = Bellota({ subsets: ["latin"], weight: ["700"] });
 
@@ -29,9 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${bellota.className} antialiased`}>
-      <body className="max-w-[712px] mx-auto w-full h-screen px-4">
+      <body className="max-w-[712px] mx-auto w-full min-h-screen px-4 pb-4">
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
