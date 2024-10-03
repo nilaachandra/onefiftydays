@@ -14,9 +14,9 @@ const page = () => {
         books and suddenly I wanted to create and write my own stories. I did
         write a few pieces of prose, essays, journals and stories on my diary or
         a notebook. Nobody would believe me that I thought about a similar story
-        like the movie "Brahmastra" after reading and watching Percy Jackson.
-        Also if I look back and see my writings which are so embarrassing to
-        read. But hey, we start somewhere right? ofcourse we do!
+        like the movie Brahmastra after reading and watching Percy Jackson. Also
+        if I look back and see my writings which are so embarrassing to read.
+        But hey, we start somewhere right? ofcourse we do!
       </p>
       <p>
         In the mists of all this, life happened, COVID, 2020, and my breakup
@@ -28,8 +28,8 @@ const page = () => {
         self, and revive my hobby and write casually. It most likely will remain
         so at times because this, my friend, is just a journal of my life. No
         ads, no sponsorships, no income. The page views are about as low as my
-        motivation to write. This is the reason why I&apos;m starting this journal
-        in the first place, to get back better at writing again.
+        motivation to write. This is the reason why I&apos;m starting this
+        journal in the first place, to get back better at writing again.
       </p>
       <p>
         It&apos;s always been, and will probably stay, just a notebook—a space
