@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <main className="prose font-bold text-black">
+    <main className="prose font-bold text-black w-full">
       <h1>So this is how it goes....</h1>
       <p>
         This is a journal about finding myself by reviving my hobby of writing.
