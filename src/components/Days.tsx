@@ -3,7 +3,7 @@ import React, { FC } from "react";
 interface DaysProps {
   day: string | number;
   title: string;
-  createdAt: any;
+  createdAt: string | any;
   views: number;
   slug: string;
 }
