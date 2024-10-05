@@ -4,6 +4,7 @@ import { Bellota } from "next/font/google";
 import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
 import { ViewTransitions } from "next-view-transitions";
+import { Toaster } from "sonner";
 
 const bellota = Bellota({ subsets: ["latin"], weight: ["700"] });
 
@@ -20,10 +21,11 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" className={`${bellota.className} antialiased`}>
-        <body className="max-w-[778px] bg-background mx-auto w-full min-h-screen px-4 pb-4">
+        <body className="max-w-[778px] bg-[#ede] mx-auto w-full min-h-screen px-4 pb-4">
           <Navbar />
           {children}
           <Footer />
+          <Toaster position="top-center" richColors/>
         </body>
       </html>
     </ViewTransitions>

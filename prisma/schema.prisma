@@ -1,0 +1,46 @@
+// Define the database provider (PostgreSQL example)
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Enum for Journal Status
+enum Status {
+  PUBLISHED
+  DRAFTING
+  ARCHIVED
+}
+
+// Model for Journal
+model Journal {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String   // Content will store HTML from Quill editor as a string
+  publishedAt DateTime @default(now())
+  status      Status   @default(DRAFTING)
+  views       View[]
+  likes       Like[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Model for Views
+model View {
+  id        Int      @id @default(autoincrement())
+  journal   Journal  @relation(fields: [journalId], references: [id], onDelete: Cascade)
+  journalId Int
+  createdAt DateTime @default(now())
+}
+
+// Model for Likes
+model Like {
+  id        Int      @id @default(autoincrement())
+  journal   Journal  @relation(fields: [journalId], references: [id], onDelete: Cascade)
+  journalId Int
+  createdAt DateTime @default(now())
+}
