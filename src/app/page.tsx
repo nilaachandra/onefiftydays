@@ -1,5 +1,5 @@
 import Days from "@/components/Days";
-import PublishedPosts from "@/components/PublishedPosts";
+import PublishedJournal from "@/components/PublishedJournal";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
         </h1>
       </section>
       <h1 className="text-xl">Here are the days ...</h1>
-      <PublishedPosts />
+      <PublishedJournal />
     </main>
   );
 }

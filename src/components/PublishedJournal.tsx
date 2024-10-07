@@ -7,7 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import { useJournals } from "@/app/useJournals";
 
-const JournalListPublic = () => {
+const PublishedJournal = () => {
   const { journals, error, isLoading } = useJournals();
 
   if (isLoading) {
@@ -38,7 +38,7 @@ const JournalListPublic = () => {
         journals.map((journal, index) => (
           <Days
             key={journal.id}
-            day={2 - index} // Day can be based on the order of the journal
+            day={journals.length - index}
             title={journal.title}
             createdAt={new Date(journal.publishedAt).toLocaleDateString(
               "en-IN",
@@ -57,4 +57,4 @@ const JournalListPublic = () => {
   );
 };
 
-export default JournalListPublic;
+export default PublishedJournal;
