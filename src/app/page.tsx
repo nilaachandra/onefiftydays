@@ -1,4 +1,5 @@
 import Days from "@/components/Days";
+import PublishedPosts from "@/components/PublishedPosts";
 
 export default function Home() {
   return (
@@ -9,29 +10,7 @@ export default function Home() {
         </h1>
       </section>
       <h1 className="text-xl">Here are the days ...</h1>
-      <section className="">
-        <Days
-          day={1}
-          title="The quick brown ox jumps over the lazy dog"
-          createdAt="20-08-2024"
-          views={27}
-          slug="hahaha"
-        />
-        <Days
-          day={2}
-          title="The quick brown ox jumps over the lazy dog"
-          createdAt="20-08-2024"
-          views={23}
-          slug="hahaha"
-        />
-        <Days
-          day={3}
-          title="The quick brown ox jumps over the lazy dog"
-          createdAt="20-08-2024"
-          views={22}
-          slug="hahaha"
-        />
-      </section>
+      <PublishedPosts />
     </main>
   );
 }

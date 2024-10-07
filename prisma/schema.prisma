@@ -20,6 +20,7 @@ enum Status {
 model Journal {
   id          Int      @id @default(autoincrement())
   title       String
+  slug        String    @unique
   content     String   // Content will store HTML from Quill editor as a string
   publishedAt DateTime @default(now())
   status      Status   @default(DRAFTING)
