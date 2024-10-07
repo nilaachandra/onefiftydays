@@ -8,13 +8,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardFooter } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -27,6 +21,7 @@ import { toast } from "sonner";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
+import { useJournals } from "@/app/useJournals";
 
 const JournalSchema = z.object({
   title: z
@@ -57,6 +52,8 @@ const createJournal = async (data: JournalFormData) => {
 };
 
 export default function Editor() {
+  const { refetch } = useJournals();
+
   const queryClient = useQueryClient();
   const {
     control,
@@ -78,6 +75,7 @@ export default function Editor() {
       toast.success("Journal submitted successfully");
       reset();
       queryClient.invalidateQueries({ queryKey: ["journals"] });
+      refetch();
     },
     onError: (error) => {
       console.error("Error submitting Journal:", error);

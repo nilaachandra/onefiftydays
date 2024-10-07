@@ -1,11 +1,60 @@
-import React from 'react'
+"use client";
 
-const PublishedPosts = () => {
+import React from "react";
+import Days from "./Days";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
+import { useJournals } from "@/app/useJournals";
+
+const JournalListPublic = () => {
+  const { journals, error, isLoading } = useJournals();
+
+  if (isLoading) {
+    return (
+      <div className="space-y-4">
+        {[...Array(3)].map((_, index) => (
+          <Skeleton key={index} className="h-[100px] w-full" />
+        ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>
+          Failed to fetch published journals. Please try again later.
+        </AlertDescription>
+      </Alert>
+    );
+  }
+
   return (
-    <section>
-        
+    <section className="space-y-4">
+      {journals &&
+        journals.map((journal, index) => (
+          <Days
+            key={journal.id}
+            day={2 - index} // Day can be based on the order of the journal
+            title={journal.title}
+            createdAt={new Date(journal.publishedAt).toLocaleDateString(
+              "en-IN",
+              {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }
+            )} // Formatting the date
+            views={journal.viewCount}
+            slug={`/${journal.slug}`} // Assuming the slug is used for navigation
+          />
+        ))}
     </section>
-  )
-}
+  );
+};
 
-export default PublishedPosts
+export default JournalListPublic;

@@ -36,9 +36,6 @@ export async function GET(req: Request) {
       ...journal,
       viewCount: journal.views.length,
       likeCount: journal.likes.length,
-      // Remove the full arrays to reduce payload size
-      views: undefined,
-      likes: undefined,
     }))
 
     return NextResponse.json({ journals: journalsWithCounts })

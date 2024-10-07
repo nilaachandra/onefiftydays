@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -11,7 +11,7 @@ interface Journal {
   id: number;
   title: string;
   content: string;
-  status: 'PUBLISHED' | 'DRAFTING' | 'ARCHIVED';
+  status: "PUBLISHED" | "DRAFTING" | "ARCHIVED";
   publishedAt: string;
   createdAt: string;
   updatedAt: string;
@@ -20,13 +20,17 @@ interface Journal {
 }
 
 const fetchJournals = async (): Promise<Journal[]> => {
-  const response = await axios.get('/api/journal/all-journal');
+  const response = await axios.get("/api/journal/all-journal");
   return response.data.journals;
 };
 
 const JournalList = () => {
-  const { data: journals, isLoading, error } = useQuery({
-    queryKey: ['journals'],
+  const {
+    data: journals,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["journals"],
     queryFn: fetchJournals,
   });
 
@@ -54,9 +58,12 @@ const JournalList = () => {
 
   return (
     <div className="space-y-4">
-      {journals && journals.map((journal) => (
-        <JournalCard key={journal.id} journal={journal} />
-      ))}
+      {journals &&
+        journals.map((journal) => (
+          <div key={journal.id}>
+            <JournalCard journal={journal} />
+          </div>
+        ))}
     </div>
   );
 };

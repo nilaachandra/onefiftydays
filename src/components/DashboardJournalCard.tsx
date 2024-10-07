@@ -27,11 +27,11 @@ interface Journal {
 
 interface JournalCardProps {
   journal: Journal;
-  onEdit: (id: number) => void;
-  onArchive: (id: number) => void;
-  onPublish: (id: number) => void;
-  onChangeStatus: (id: number, newStatus: Journal["status"]) => void;
-  onDelete: (id: number) => void;
+  onEdit?: (id: number) => void;
+  onArchive?: (id: number) => void;
+  onPublish?: (id: number) => void;
+  onChangeStatus?: (id: number, newStatus: Journal["status"]) => void;
+  onDelete?: (id: number) => void;
 }
 
 const JournalCard: React.FC<JournalCardProps> = ({
@@ -85,41 +85,54 @@ const JournalCard: React.FC<JournalCardProps> = ({
         </div>
       </CardContent>
       <CardFooter className="grid grid-cols-3 gap-2">
-        <Button variant="default" size="sm" onClick={() => onEdit(journal.id)}>
+        {/* <Button variant="default" size="sm" onClick={() => onEdit(journal.id)}> */}
+        <Button variant="default" size="sm">
           <Edit className="mr-2 h-4 w-4" /> Edit
         </Button>
         {journal.status === "DRAFTING" && (
-          <Button
-            variant="default"
-            size="sm"
-            onClick={() => onPublish(journal.id)}
-          >
+          // <Button
+          //   variant="default"
+          //   size="sm"
+          //   onClick={() => onPublish(journal.id)}
+          // >
+          <Button variant="default" size="sm">
             <Send className="mr-2 h-4 w-4" /> Publish
           </Button>
         )}
         {journal.status === "PUBLISHED" && (
+          // <Button
+          //   variant="default"
+          //   size="sm"
+          //   onClick={() => onArchive(journal.id)}
+          // >
           <Button
             variant="default"
             size="sm"
-            onClick={() => onArchive(journal.id)}
+            // onClick={() => onArchive(journal.id)}
           >
             <Archive className="mr-2 h-4 w-4" /> Archive
           </Button>
         )}
         {journal.status === "ARCHIVED" && (
-          <Button
-            variant="default"
-            size="sm"
-            onClick={() => onChangeStatus(journal.id, "PUBLISHED")}
-          >
+          // <Button
+          //   variant="default"
+          //   size="sm"
+          //   onClick={() => onChangeStatus(journal.id, "PUBLISHED")}
+          // >
+          <Button variant="default" size="sm">
             <Send className="mr-2 h-4 w-4" /> Republish
           </Button>
         )}
-        <Button
+        {/* <Button
           variant="default"
           size="sm"
           className="text-red-500 hover:text-red-700"
           onClick={() => onDelete(journal.id)}
+        > */}
+        <Button
+          variant="default"
+          size="sm"
+          className="text-red-500 hover:text-red-700"
         >
           <Trash2 className="mr-2 h-4 w-4" /> Delete
         </Button>
