@@ -9,18 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CalendarDays, Edit, LogOut, Plus } from "lucide-react";
+import { LogOut } from "lucide-react";
 import Editor from "@/components/Editor";
-
-// Simulated blog data
-const blogs = [
-  { id: 1, title: "Getting Started with Next.js", date: "2023-05-15" },
-  { id: 2, title: "The Power of Server Components", date: "2023-06-02" },
-  { id: 3, title: "Mastering Tailwind CSS", date: "2023-06-20" },
-];
+import JournalList from "@/components/JournalList";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -45,27 +37,10 @@ export default async function DashboardPage() {
               <TabsTrigger value="new">New Blog</TabsTrigger>
             </TabsList>
             <TabsContent value="blogs">
-              <div className="space-y-4">
-                {blogs.map((blog) => (
-                  <Card key={blog.id}>
-                    <CardHeader>
-                      <CardTitle>{blog.title}</CardTitle>
-                      <CardDescription className="flex items-center">
-                        <CalendarDays className="mr-2 h-4 w-4" />
-                        {blog.date}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardFooter>
-                      <Button variant="default" className="w-full">
-                        <Edit className="mr-2 h-4 w-4" /> Edit
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
+              <JournalList />
             </TabsContent>
             <TabsContent value="new">
-              <Editor/>
+              <Editor />
             </TabsContent>
           </Tabs>
         </CardContent>

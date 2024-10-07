@@ -31,7 +31,7 @@ import "react-quill/dist/quill.snow.css";
 import { toast } from "sonner";
 
 // Zod schema for form validation
-const blogPostSchema = z.object({
+const JournalSchema = z.object({
   title: z
     .string()
     .min(1, "Title is required")
@@ -40,7 +40,7 @@ const blogPostSchema = z.object({
   status: z.enum(["PUBLISHED", "DRAFTING", "ARCHIVED"]).default("DRAFTING"),
 });
 
-type BlogPostFormData = z.infer<typeof blogPostSchema>;
+type JournalFormData = z.infer<typeof JournalSchema>;
 
 // Quill modules configuration
 const quillModules = {
@@ -56,7 +56,7 @@ const quillModules = {
 };
 
 // API function to create a blog post
-const createBlogPost = async (data: BlogPostFormData) => {
+const createJournal = async (data: JournalFormData) => {
   const response = await axios.post("/api/journal/write", data);
   return response.data;
 };
@@ -69,8 +69,8 @@ export default function Editor() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<BlogPostFormData>({
-    resolver: zodResolver(blogPostSchema),
+  } = useForm<JournalFormData>({
+    resolver: zodResolver(JournalSchema),
     defaultValues: {
       title: "",
       content: "",
@@ -79,18 +79,18 @@ export default function Editor() {
   });
 
   const mutation = useMutation({
-    mutationFn: createBlogPost,
+    mutationFn: createJournal,
     onSuccess: () => {
-      toast.success("Blog post submitted successfully");
+      toast.success("Journal submitted successfully");
       reset(); // Reset the form after successful submission
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["blogs"] });
+      queryClient.invalidateQueries({ queryKey: ["journals"] });
     },
     onError: (error) => {
-      console.error("Error submitting blog post:", error);
+      console.error("Error submitting Journal:", error);
       if (axios.isAxiosError(error)) {
         toast.error(
-          error.response?.data?.error || "Failed to submit blog post"
+          error.response?.data?.error || "Failed to submit Journal"
         );
       } else {
         toast.error("An unexpected error occurred");
@@ -98,7 +98,7 @@ export default function Editor() {
     },
   });
 
-  const onSubmit = (data: BlogPostFormData) => {
+  const onSubmit = (data: JournalFormData) => {
     mutation.mutate(data);
   };
 
@@ -176,7 +176,7 @@ export default function Editor() {
               disabled={mutation.isPending}
               className="w-full"
             >
-              {mutation.isPending ? "Submitting..." : "Submit Blog Post"}
+              {mutation.isPending ? "Submitting..." : "Submit Journal"}
             </Button>
           </CardFooter>
         </form>
