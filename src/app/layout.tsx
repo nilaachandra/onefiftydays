@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
 import { ViewTransitions } from "next-view-transitions";
 import { Toaster } from "sonner";
+import { cn } from "@/lib/utils";
+import QueryProvider from "./_provider";
 
 const bellota = Bellota({ subsets: ["latin"], weight: ["700"] });
 
@@ -21,11 +23,15 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" className={`${bellota.className} antialiased`}>
-        <body className="max-w-[778px] bg-[#ede] mx-auto w-full min-h-screen px-4 pb-4">
-          <Navbar />
-          {children}
-          <Footer />
-          <Toaster position="top-center" richColors/>
+        <body className={cn(`bg-[#ede] min-h-screen scroll-smooth`)}>
+          <QueryProvider>
+            <div className="w-full max-w-[778px] mx-auto px-4 py-2">
+              <Navbar />
+              {children}
+              <Footer />
+              <Toaster position="top-center" richColors />
+            </div>
+          </QueryProvider>
         </body>
       </html>
     </ViewTransitions>
