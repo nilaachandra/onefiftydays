@@ -23,9 +23,10 @@ export const useJournals = () => {
     isLoading,
     error,
     refetch,
+    isFetchedAfterMount
   } = useQuery({
     queryKey: ["publishedJournals"],
     queryFn: fetchPublishedJournals,
   });
-  return { journals, isLoading, error, refetch };
+  return { journals, isLoading, error, refetch, isFetchedAfterMount };
 };
