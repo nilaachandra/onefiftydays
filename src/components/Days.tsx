@@ -11,12 +11,12 @@ interface DaysProps {
 const Days: FC<DaysProps> = ({ day, title, createdAt, views, slug }) => {
   return (
     <Link href={slug}>
-      <div className="hover:bg-[#d6d4c7] w-full p-1 rounded-md transition-all duration-200 cursor-pointer leading-tight">
-        <div className="grid grid-cols-5 py-2">
+      <div className="hover:bg-[#d6d4c7] w-full p-1 rounded-md transition-all duration-200 cursor-pointer leading-none">
+        <div className="grid grid-cols-5 py-2 leading-none">
           <p className="col-span-1">Day {day}</p>
-          <p className="col-span-4 text-right text-lg">{title}</p>
+          <p className="col-span-4 text-right text-lg leading-none underline italic">{title}</p>
         </div>
-        <div className="flex gap-4 justify-between text-sm">
+        <div className="flex gap-4 justify-between text-sm leading-none">
           <p>{views} views</p>
           <p>{createdAt}</p>
         </div>
