@@ -8,7 +8,6 @@ import { DateTimeComponent } from "@/components/DateTimeComponent";
 interface Journal {
   id: number;
   title: string;
-  slug: string;
   content: string;
   status: "PUBLISHED" | "DRAFTING" | "ARCHIVED";
   publishedAt: string;
@@ -24,12 +23,11 @@ export default async function JournalPage({
   params: { slug: string };
 }) {
   // Fetch the journal entry along with the count of views and likes
-  const journalData = await db.journal.findUnique({
-    where: { slug: params.slug },
+  const journalData = await db.journal.findFirst({
+    where: { slug: params.slug }, // No need for it to be unique, just fetch the first matching result
     select: {
       id: true,
       title: true,
-      slug: true,
       content: true,
       status: true,
       publishedAt: true,
@@ -52,7 +50,6 @@ export default async function JournalPage({
   const journal: Journal = {
     id: journalData.id,
     title: journalData.title,
-    slug: journalData.slug,
     content: journalData.content,
     status: journalData.status,
     publishedAt: journalData.publishedAt.toISOString(), // Convert to string
@@ -63,13 +60,16 @@ export default async function JournalPage({
   };
 
   return (
-    <div className="">
-      <div className="mb-4">
-      <h1 className="text-3xl font-bold leading-none mb-1">{journal?.title}</h1>
+    <div className="container mx-auto py-8 px-4">
+      {/* Journal Title */}
+      <h1 className="text-3xl font-bold mb-4">{journal?.title}</h1>
+
+      {/* Journal Status and Created Date */}
       <DateTimeComponent dateTimeString={journal?.createdAt} />
-      </div>
+
+      {/* Journal Content */}
       <div
-        className="prose"
+        className="prose prose-lg"
         dangerouslySetInnerHTML={{ __html: journal?.content }}
       />
 
