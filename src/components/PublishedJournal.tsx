@@ -1,14 +1,31 @@
 "use client";
 
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import Days from "./Days";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import { useJournals } from "@/app/useJournals";
+
+interface Journal {
+  id: number;
+  title: string;
+  publishedAt: string;
+  viewCount: number;
+  slug: string;
+}
+
+const fetchPublishedJournals = async (): Promise<Journal[]> => {
+  const response = await axios.get('/api/journal/published');
+  return response.data.journals;
+};
 
 const PublishedJournal = () => {
-  const { publishedJournals, error, isLoading } = useJournals();
+  const { data: publishedJournals, error, isLoading } = useQuery({
+    queryKey: ['publishedJournals'],
+    queryFn: fetchPublishedJournals,
+  });
 
   if (isLoading) {
     return (
@@ -48,9 +65,9 @@ const PublishedJournal = () => {
                 month: "long",
                 day: "numeric",
               }
-            )} // Formatting the date
+            )}
             views={journal.viewCount}
-            slug={`/${journal.slug}`} // Assuming the slug is used for navigation
+            slug={`/${journal.slug}`}
           />
         ))}
     </section>

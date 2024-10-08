@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Edit, Archive, Eye, Trash2, ThumbsUp, Send, Loader2 } from "lucide-react";
+import { Edit, Archive, Eye, ThumbsUp, Send, Loader2 } from "lucide-react";
 import {
   Card,
   CardHeader,
@@ -15,7 +15,11 @@ import { Badge } from "@/components/ui/badge";
 import { DateTimeComponent } from "./DateTimeComponent";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { archiveJournal, deleteJournal, publishJournal } from "@/app/cms/cms-actions/actions";
+import {
+  archiveJournal,
+  deleteJournal,
+  publishJournal,
+} from "@/app/cms/cms-actions/actions";
 import { ConfirmDelete } from "./ConfirmDelete";
 
 interface Journal {
@@ -35,16 +39,13 @@ interface JournalCardProps {
   onEdit?: (id: number) => void;
 }
 
-const JournalCard: React.FC<JournalCardProps> = ({
-  journal,
-  onEdit,
-}) => {
+const JournalCard: React.FC<JournalCardProps> = ({ journal, onEdit }) => {
   const queryClient = useQueryClient();
 
   const deleteMutation = useMutation({
     mutationFn: deleteJournal,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['journals'] });
+      queryClient.invalidateQueries({ queryKey: ["journals"] });
       toast.success("Journal deleted successfully");
     },
     onError: () => {
@@ -55,7 +56,7 @@ const JournalCard: React.FC<JournalCardProps> = ({
   const archiveMutation = useMutation({
     mutationFn: archiveJournal,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['journals'] });
+      queryClient.invalidateQueries({ queryKey: ["journals"] });
       toast.success("Journal archived successfully");
     },
     onError: () => {
@@ -66,7 +67,7 @@ const JournalCard: React.FC<JournalCardProps> = ({
   const publishMutation = useMutation({
     mutationFn: publishJournal,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['journals'] });
+      queryClient.invalidateQueries({ queryKey: ["journals"] });
       toast.success("Journal published successfully");
     },
     onError: () => {
@@ -131,7 +132,11 @@ const JournalCard: React.FC<JournalCardProps> = ({
         </div>
       </CardContent>
       <CardFooter className="grid grid-cols-3 gap-2">
-        <Button variant="default" size="sm" onClick={() => onEdit?.(journal.id)}>
+        <Button
+          variant="default"
+          size="sm"
+          onClick={() => onEdit?.(journal.id)}
+        >
           <Edit className="mr-2 h-4 w-4" /> Edit
         </Button>
         {(journal.status === "DRAFTING" || journal.status === "ARCHIVED") && (
@@ -164,7 +169,7 @@ const JournalCard: React.FC<JournalCardProps> = ({
             {archiveMutation.isPending ? "Archiving..." : "Archive"}
           </Button>
         )}
-        <ConfirmDelete journalId={journal.id}/>
+        <ConfirmDelete journalId={journal.id} />
       </CardFooter>
     </Card>
   );
