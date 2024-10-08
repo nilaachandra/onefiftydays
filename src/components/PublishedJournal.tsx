@@ -50,7 +50,7 @@ const PublishedJournal = () => {
               }
             )} // Formatting the date
             views={journal.viewCount}
-            slug={`journals/${journal.slug}`} // Assuming the slug is used for navigation
+            slug={`/${journal.slug}`} // Assuming the slug is used for navigation
           />
         ))}
     </section>

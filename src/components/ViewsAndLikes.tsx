@@ -7,7 +7,7 @@ import { useTransition } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { v4 as uuidv4 } from "uuid";
-import { incrementLike, incrementView } from "@/app/journals/[slug]/actions";
+import { incrementLike, incrementView } from "@/app/[slug]/actions";
 import { useJournals } from "@/app/useJournals";
 
 interface ViewsAndLikesProps {

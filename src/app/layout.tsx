@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" className={`${bellota.className} antialiased`}>
-        <body className={cn(`bg-[#ede] min-h-screen scroll-smooth`)}>
+        <body className={cn(`bg-[#fae3cf] min-h-screen scroll-smooth`)}>
           <QueryProvider>
             <div className="w-full max-w-[778px] mx-auto px-4 py-2">
               <Navbar />
