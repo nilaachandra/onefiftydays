@@ -8,7 +8,7 @@ import { AlertCircle } from "lucide-react";
 import { useJournals } from "@/app/useJournals";
 
 const PublishedJournal = () => {
-  const { journals, error, isLoading, refetch } = useJournals();
+  const { journals, error, isLoading } = useJournals();
 
   if (isLoading) {
     return (
