@@ -12,18 +12,18 @@ interface Journal {
   likeCount: number;
   slug: string; // Assuming slug is also part of the journal object
 }
-export const useJournals = () => {
-  const fetchPublishedJournals = async (): Promise<Journal[]> => {
-    const response = await axios.get("/api/journal/published");
-    return response.data.journals;
-  };
+const fetchPublishedJournals = async (): Promise<Journal[]> => {
+  const response = await axios.get("/api/journal/published");
+  return response.data.journals;
+};
 
+export const useJournals = () => {
   const {
     data: journals,
     isLoading,
     error,
     refetch,
-    isFetchedAfterMount
+    isFetchedAfterMount,
   } = useQuery({
     queryKey: ["publishedJournals"],
     queryFn: fetchPublishedJournals,
