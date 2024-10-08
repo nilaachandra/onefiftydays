@@ -9,6 +9,7 @@ interface Journal {
   id: number;
   title: string;
   content: string;
+  slug: string; // Add this line
   status: "PUBLISHED" | "DRAFTING" | "ARCHIVED";
   publishedAt: string;
   createdAt: string;
@@ -31,6 +32,7 @@ export default async function JournalPage({
       content: true,
       status: true,
       publishedAt: true,
+      updatedAt: true,
       createdAt: true,
       _count: {
         select: {
@@ -51,10 +53,11 @@ export default async function JournalPage({
     id: journalData.id,
     title: journalData.title,
     content: journalData.content,
+    slug: params.slug, // Add this line
     status: journalData.status,
-    publishedAt: journalData.publishedAt.toISOString(), // Convert to string
-    createdAt: journalData.createdAt.toISOString(), // Convert to string
-    updatedAt: new Date().toISOString(), // If needed, replace with updatedAt from Prisma
+    publishedAt: journalData.publishedAt.toISOString(),
+    createdAt: journalData.createdAt.toISOString(),
+    updatedAt: journalData.updatedAt.toISOString(), // Use the actual updatedAt from Prisma
     viewCount: journalData._count.views,
     likeCount: journalData._count.likes,
   };
