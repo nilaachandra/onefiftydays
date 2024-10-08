@@ -8,10 +8,9 @@ import { AlertCircle } from "lucide-react";
 import { useJournals } from "@/app/useJournals";
 
 const PublishedJournal = () => {
-  const { journals, error, isLoading, refetch } = useJournals();
+  const { publishedJournals, error, isLoading } = useJournals();
 
   if (isLoading) {
-    refetch();
     return (
       <div className="space-y-4">
         {[...Array(3)].map((_, index) => (
@@ -35,11 +34,11 @@ const PublishedJournal = () => {
 
   return (
     <section className="space-y-4">
-      {journals &&
-        journals.map((journal, index) => (
+      {publishedJournals &&
+        publishedJournals.map((journal, index) => (
           <Days
             key={journal.id}
-            day={journals.length - index}
+            day={publishedJournals.length - index}
             title={journal.title}
             createdAt={new Date(journal.publishedAt).toLocaleDateString(
               "en-IN",

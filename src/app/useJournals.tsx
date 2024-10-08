@@ -19,7 +19,7 @@ const fetchPublishedJournals = async (): Promise<Journal[]> => {
 
 export const useJournals = () => {
   const {
-    data: journals,
+    data: publishedJournals,
     isLoading,
     error,
     refetch,
@@ -28,5 +28,5 @@ export const useJournals = () => {
     queryKey: ["publishedJournals"],
     queryFn: fetchPublishedJournals,
   });
-  return { journals, isLoading, error, refetch, isFetchedAfterMount };
+  return { publishedJournals, isLoading, error, refetch, isFetchedAfterMount };
 };

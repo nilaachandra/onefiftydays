@@ -1,3 +1,4 @@
+
 import PublishedJournal from "@/components/PublishedJournal";
 
 export default function Home() {
