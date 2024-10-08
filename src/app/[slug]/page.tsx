@@ -8,6 +8,7 @@ import { DateTimeComponent } from "@/components/DateTimeComponent";
 interface Journal {
   id: number;
   title: string;
+  slug: string;
   content: string;
   status: "PUBLISHED" | "DRAFTING" | "ARCHIVED";
   publishedAt: string;
@@ -28,6 +29,7 @@ export default async function JournalPage({
     select: {
       id: true,
       title: true,
+      slug: true,
       content: true,
       status: true,
       publishedAt: true,
@@ -50,6 +52,7 @@ export default async function JournalPage({
   const journal: Journal = {
     id: journalData.id,
     title: journalData.title,
+    slug: journalData.slug,
     content: journalData.content,
     status: journalData.status,
     publishedAt: journalData.publishedAt.toISOString(), // Convert to string
