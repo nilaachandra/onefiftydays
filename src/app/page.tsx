@@ -1,15 +1,7 @@
-"use client";
+import Days from "@/components/Days";
 import PublishedJournal from "@/components/PublishedJournal";
-import { useJournals } from "./useJournals";
-import { useEffect } from "react";
 
 export default function Home() {
-  const { refetch, isFetchedAfterMount } = useJournals();
-
-  useEffect(() => {
-    isFetchedAfterMount ? null : refetch();
-  }, [isFetchedAfterMount]);
-
   return (
     <main className="w-full min-h-screen">
       <section className="hero flex justify-center my-8">

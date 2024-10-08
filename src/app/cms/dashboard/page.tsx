@@ -33,8 +33,8 @@ export default async function DashboardPage() {
         <CardContent>
           <Tabs defaultValue="blogs" className="w-full">
             <TabsList className="bg-[#ede]">
-              <TabsTrigger value="blogs">Your Blogs</TabsTrigger>
-              <TabsTrigger value="new">New Blog</TabsTrigger>
+              <TabsTrigger value="blogs">Your Journals</TabsTrigger>
+              <TabsTrigger value="new">New Journal</TabsTrigger>
             </TabsList>
             <TabsContent value="blogs">
               <JournalList />
