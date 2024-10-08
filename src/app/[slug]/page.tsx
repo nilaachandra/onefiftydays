@@ -24,7 +24,7 @@ export default async function JournalPage({
 }) {
   // Fetch the journal entry along with the count of views and likes
   const journalData = await db.journal.findFirst({
-    where: { slug: params.slug }, // No need for it to be unique, just fetch the first matching result
+    where: { slug: params.slug },
     select: {
       id: true,
       title: true,
@@ -60,16 +60,13 @@ export default async function JournalPage({
   };
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      {/* Journal Title */}
-      <h1 className="text-3xl font-bold mb-4">{journal?.title}</h1>
-
-      {/* Journal Status and Created Date */}
+    <div className="">
+      <div className="mb-4">
+      <h1 className="text-3xl font-bold leading-none mb-1">{journal?.title}</h1>
       <DateTimeComponent dateTimeString={journal?.createdAt} />
-
-      {/* Journal Content */}
+      </div>
       <div
-        className="prose prose-lg"
+        className="prose"
         dangerouslySetInnerHTML={{ __html: journal?.content }}
       />
 
