@@ -46,8 +46,8 @@ const ViewsAndLikes = ({
     incrementView(journalId).then((result) => {
       if (result.success) {
         setViewCount(result.viewCount as number);
-        refetch();
       }
+      refetch()
     });
   }, [journalId]);
 

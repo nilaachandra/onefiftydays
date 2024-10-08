@@ -14,7 +14,7 @@ interface Journal {
 }
 export const useJournals = () => {
   const fetchPublishedJournals = async (): Promise<Journal[]> => {
-    const response = await axios.get("/api/journal/published"); // API route for fetching published journals
+    const response = await axios.get("/api/journal/published");
     return response.data.journals;
   };
 
