@@ -1,4 +1,3 @@
-import Days from "@/components/Days";
 import PublishedJournal from "@/components/PublishedJournal";
 
 export default function Home() {

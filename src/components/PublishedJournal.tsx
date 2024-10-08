@@ -6,36 +6,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import { useJournals } from "@/app/useJournals";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-interface Journal {
-  id: number;
-  title: string;
-  content: string;
-  status: "PUBLISHED" | "DRAFTING" | "ARCHIVED";
-  publishedAt: string;
-  createdAt: string;
-  updatedAt: string;
-  viewCount: number;
-  likeCount: number;
-  slug: string; // Assuming slug is also part of the journal object
-}
-const fetchPublishedJournals = async (): Promise<Journal[]> => {
-  const response = await axios.get("/api/journal/published");
-  return response.data.journals;
-};
+
 const PublishedJournal = () => {
-  const {
-    data: journals,
-    isLoading,
-    error,
-    refetch,
-    isFetchedAfterMount,
-  } = useQuery({
-    queryKey: ["publishedJournals"],
-    queryFn: fetchPublishedJournals,
-  });
+  const { journals, error, isLoading, refetch } = useJournals();
+  
   if (isLoading) {
+    refetch();
     return (
       <div className="space-y-4">
         {[...Array(3)].map((_, index) => (
