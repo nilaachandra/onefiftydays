@@ -12,10 +12,10 @@ const Navbar = () => {
       </Link>
       <div className="flex items-center gap-2">
         <Link
-          href={"/about"}
+          href={"/journals"}
           className="font-bold hover:underline duration-200 transition-all text-lg"
         >
-          About
+          Journals
         </Link>
         <a
           href="https://x.com/nilaacodes"

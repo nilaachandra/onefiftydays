@@ -9,7 +9,7 @@ import { useJournals } from "@/app/useJournals";
 
 const PublishedJournal = () => {
   const { journals, error, isLoading, refetch } = useJournals();
-  
+
   if (isLoading) {
     refetch();
     return (
@@ -51,7 +51,7 @@ const PublishedJournal = () => {
               }
             )} // Formatting the date
             views={journal.viewCount}
-            slug={`/${journal.slug}`} // Assuming the slug is used for navigation
+            slug={`journals/${journal.slug}`} // Assuming the slug is used for navigation
           />
         ))}
     </section>
