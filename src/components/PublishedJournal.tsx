@@ -17,7 +17,7 @@ interface Journal {
 }
 
 const fetchPublishedJournals = async (): Promise<Journal[]> => {
-  const response = await axios.get('/api/journal/published');
+  const response = await axios.get('/api/journal?status=PUBLISHED');
   return response.data.journals;
 };
 
