@@ -27,12 +27,12 @@ export default async function DashboardPage() {
         <CardHeader>
           <CardTitle className="text-2xl">CMS Dashboard</CardTitle>
           <CardDescription>
-            Welcome, {session.user?.name}! Manage your blogs here.
+            Welcome, Nilaa! Manage your blogs here.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="blogs" className="w-full">
-            <TabsList className="bg-[#ede]">
+            <TabsList className="bg-[#fae3cf]">
               <TabsTrigger value="blogs">Your Journals</TabsTrigger>
               <TabsTrigger value="new">New Journal</TabsTrigger>
             </TabsList>

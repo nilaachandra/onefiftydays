@@ -7,6 +7,7 @@ import Days from "./Days";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import HomepageSkeleton from "./HomepageSkeleton";
 
 interface Journal {
   id: number;
@@ -17,21 +18,25 @@ interface Journal {
 }
 
 const fetchPublishedJournals = async (): Promise<Journal[]> => {
-  const response = await axios.get('/api/journal?status=PUBLISHED');
+  const response = await axios.get("/api/journal?status=PUBLISHED");
   return response.data.journals;
 };
 
 const PublishedJournal = () => {
-  const { data: publishedJournals, error, isLoading } = useQuery({
-    queryKey: ['publishedJournals'],
+  const {
+    data: publishedJournals,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["publishedJournals"],
     queryFn: fetchPublishedJournals,
   });
 
   if (isLoading) {
     return (
       <div className="space-y-4">
-        {[...Array(3)].map((_, index) => (
-          <Skeleton key={index} className="h-[100px] w-full" />
+        {[...Array(6)].map((_, index) => (
+          <HomepageSkeleton />
         ))}
       </div>
     );

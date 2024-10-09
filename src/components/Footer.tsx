@@ -9,6 +9,26 @@ const Footer = () => {
         Disclaimer: I don&apos;t own some of the images here—shocking, I know.
         Don&apos;t sue me, please.
       </p>
+      <p className="text-sm">
+        Host your own Journals/blog. Clone and Star this repository on{" "}
+        <a
+          href="https://github.com/nilaachandra/onefiftydays"
+          target="_blank"
+          className="text-blue-600 underline"
+        >
+          GitHub.
+        </a>
+      </p>
+      <p className="text-sm">
+        Support me by buying me a{" "}
+        <a
+          href="https://buymeacoffee.com/nilaacodes"
+          target="_blank"
+          className="text-blue-600 underline"
+        >
+          Coffee!
+        </a>
+      </p>
     </footer>
   );
 };

@@ -6,6 +6,7 @@ import JournalCard from "./DashboardJournalCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import JournalListSkeleton from "./JournalListSkeleton";
 
 interface Journal {
   id: number;
@@ -38,7 +39,7 @@ const JournalList = () => {
     return (
       <div className="space-y-4">
         {[...Array(3)].map((_, index) => (
-          <Skeleton key={index} className="h-[200px] w-full" />
+          <JournalListSkeleton/>
         ))}
       </div>
     );

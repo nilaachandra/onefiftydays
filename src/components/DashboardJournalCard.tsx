@@ -21,6 +21,7 @@ import {
   publishJournal,
 } from "@/app/cms/cms-actions/actions";
 import { ConfirmDelete } from "./ConfirmDelete";
+import { useTransitionRouter } from "next-view-transitions";
 
 interface Journal {
   id: number;
@@ -41,7 +42,7 @@ interface JournalCardProps {
 
 const JournalCard: React.FC<JournalCardProps> = ({ journal, onEdit }) => {
   const queryClient = useQueryClient();
-
+  const router = useTransitionRouter();
   const deleteMutation = useMutation({
     mutationFn: deleteJournal,
     onSuccess: () => {
@@ -107,15 +108,13 @@ const JournalCard: React.FC<JournalCardProps> = ({ journal, onEdit }) => {
   };
 
   return (
-    <Card className="w-full">
+    <Card className="w-full bg-[#fae3cf] border-none">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold">{journal.title}</CardTitle>
-        <CardDescription className="">
-          <DateTimeComponent dateTimeString={journal.createdAt} />
-        </CardDescription>
+        <CardTitle className="text-lg leading-none font-semibold">{journal.title}</CardTitle>
+        <DateTimeComponent dateTimeString={journal.createdAt} />
       </CardHeader>
       <CardContent>
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center">
           <Badge className={`${statusInfo.color} text-white`}>
             {statusInfo.name}
           </Badge>
@@ -131,11 +130,11 @@ const JournalCard: React.FC<JournalCardProps> = ({ journal, onEdit }) => {
           </div>
         </div>
       </CardContent>
-      <CardFooter className="grid grid-cols-3 gap-2">
+      <CardFooter className="grid grid-cols-3 gap-1">
         <Button
           variant="default"
           size="sm"
-          onClick={() => onEdit?.(journal.id)}
+          onClick={() => router.push(`/cms/dashboard/${journal.id}/edit`)}
         >
           <Edit className="mr-2 h-4 w-4" /> Edit
         </Button>

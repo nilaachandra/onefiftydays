@@ -46,7 +46,7 @@ export function ConfirmDelete({ journalId }: { journalId: number }) {
           {deleteMutation.isPending ? "Deleting..." : "Delete"}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-[#fae3cf]"> 
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
