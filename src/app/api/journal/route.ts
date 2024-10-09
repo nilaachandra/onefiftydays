@@ -1,16 +1,9 @@
 import { NextResponse } from 'next/server'
 import { db } from "@/lib/db"
-import { auth } from "@/app/lib/auth"
 import { Status } from '@prisma/client'
 
 export async function GET(request: Request) {
   try {
-    // Check authentication
-    const session = await auth()
-    if (!session || !session.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
     // Get the status from the query parameters
     const { searchParams } = new URL(request.url)
     const status = searchParams.get('status') as Status | null
