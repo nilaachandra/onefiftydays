@@ -4,7 +4,6 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Days from "./Days";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import HomepageSkeleton from "./HomepageSkeleton";
@@ -36,7 +35,7 @@ const PublishedJournal = () => {
     return (
       <div className="space-y-4">
         {[...Array(6)].map((_, index) => (
-          <HomepageSkeleton />
+          <div key={index}><HomepageSkeleton /></div>
         ))}
       </div>
     );

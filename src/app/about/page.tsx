@@ -1,9 +1,10 @@
+import Image from "next/image";
 import React from "react";
 
 const page = () => {
   return (
     <main className="prose font-bold text-black w-full">
-      <h1>So this is how it goes....</h1>
+      <h1 className="mb-0">So this is how it goes....</h1>
       <p>
         This is a journal about finding myself by reviving my hobby of writing.
         Right now I&apos;m nowhere near where I wanna be (I mean I&apos;m a
@@ -18,6 +19,7 @@ const page = () => {
         if I look back and see my writings which are so embarrassing to read.
         But hey, we start somewhere right? ofcourse we do!
       </p>
+      <Image alt="" width={400} height={100} src="/onefiftydays.gif" className="w-full" />
       <p>
         In the mists of all this, life happened, COVID, 2020, and my breakup
         happened. Between personal and political implosions, I lost this
@@ -31,6 +33,8 @@ const page = () => {
         motivation to write. This is the reason why I&apos;m starting this
         journal in the first place, to get back better at writing again.
       </p>
+      <Image alt="" width={400} height={100} src="/onefiftydaysimg.jpg" className="w-full" />
+
       <p>
         It&apos;s always been, and will probably stay, just a notebook—a space
         to gather random thoughts, memories, and feelings. A little light in the

@@ -3,7 +3,6 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import JournalCard from "./DashboardJournalCard";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import JournalListSkeleton from "./JournalListSkeleton";
@@ -39,7 +38,9 @@ const JournalList = () => {
     return (
       <div className="space-y-4">
         {[...Array(3)].map((_, index) => (
-          <JournalListSkeleton/>
+          <div key={index}>
+            <JournalListSkeleton />
+          </div>
         ))}
       </div>
     );

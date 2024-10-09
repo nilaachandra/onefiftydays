@@ -21,7 +21,6 @@ import { toast } from "sonner";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
-import { useJournals } from "@/app/useJournals";
 
 const JournalSchema = z.object({
   title: z
@@ -52,8 +51,6 @@ const createJournal = async (data: JournalFormData) => {
 };
 
 export default function Editor() {
-  const { refetch } = useJournals();
-
   const queryClient = useQueryClient();
   const {
     control,
@@ -75,7 +72,7 @@ export default function Editor() {
       toast.success("Journal submitted successfully");
       reset();
       queryClient.invalidateQueries({ queryKey: ["journals"] });
-      refetch();
+      queryClient.invalidateQueries({ queryKey: ["publishedJournals"] });
     },
     onError: (error) => {
       console.error("Error submitting Journal:", error);
