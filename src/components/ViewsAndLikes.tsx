@@ -144,7 +144,7 @@ const ViewsAndLikes = ({
       {/* Likes */}
       <div className="flex items-center space-x-1">
         <Button
-          variant="ghost"
+         variant="link"
           size="sm"
           onClick={handleLike}
           disabled={incrementLikeMutation.isPending || !browserId}

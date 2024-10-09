@@ -2,6 +2,8 @@ import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { DateTimeComponent } from "@/components/DateTimeComponent";
 import ViewsAndLikes from "@/components/ViewsAndLikes";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "next-view-transitions";
 
 // Define a type-safe interface for Journal
 interface Journal {
@@ -69,11 +71,15 @@ export default async function JournalPage({
           {journal?.title}
         </h1>
         <DateTimeComponent dateTimeString={journal?.createdAt} />
+        <Link href={'/'} className="flex items-center gap-2 mt-3 underline">
+          <ArrowLeft size={16} />
+          Go Back
+        </Link>
       </div>
 
       {/* Journal Content */}
       <div
-        className="prose"
+        className="prose text-black"
         dangerouslySetInnerHTML={{ __html: journal?.content }}
       />
 
@@ -83,6 +89,10 @@ export default async function JournalPage({
         likeCount={journal?.likeCount}
         viewCount={journal?.viewCount}
       />
+       <Link href={'/'} className="flex items-center gap-2 mt-3 underline">
+          <ArrowLeft size={16} />
+          Go Back
+        </Link>
     </div>
   );
 }
