@@ -7,6 +7,8 @@ import { ViewTransitions } from "next-view-transitions";
 import { Toaster } from "sonner";
 import { cn } from "@/lib/utils";
 import QueryProvider from "./_provider";
+import dynamic from "next/dynamic";
+import { PostHogWrapper } from "./PostHogWrapper";
 
 const bellota = Bellota({ subsets: ["latin"], weight: ["700"] });
 
@@ -14,6 +16,10 @@ export const metadata: Metadata = {
   title: "One Fifty Days",
   description: "My personal journal",
 };
+
+const PostHogPageView = dynamic(() => import("@/app/PostHogPageView"), {
+  ssr: false,
+});
 
 export default function RootLayout({
   children,
@@ -23,16 +29,19 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" className={`${bellota.className} antialiased`}>
-        <body className={cn(`bg-[#fae3cf] min-h-screen scroll-smooth`)}>
-          <QueryProvider>
-            <div className="w-full max-w-[778px] mx-auto px-4 py-2">
-              <Navbar />
-              {children}
-              <Footer />
-              <Toaster position="top-center" richColors />
-            </div>
-          </QueryProvider>
-        </body>
+        <PostHogWrapper>
+          <body className={cn(`bg-[#fae3cf] min-h-screen scroll-smooth`)}>
+            <QueryProvider>
+              <PostHogPageView />
+              <div className="w-full max-w-[778px] mx-auto px-4 py-2">
+                <Navbar />
+                {children}
+                <Footer />
+                <Toaster position="top-center" richColors />
+              </div>
+            </QueryProvider>
+          </body>
+        </PostHogWrapper>
       </html>
     </ViewTransitions>
   );
