@@ -9,7 +9,7 @@ const ProgressBarWrapper = ({ children } : {children:ReactNode}) => {
       {children}
       <ProgressBar
         height="3px"
-        color="blue"
+        color="black"
         
       />
     </>
