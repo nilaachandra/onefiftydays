@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import QueryProvider from "./_provider";
 import dynamic from "next/dynamic";
 import { PostHogWrapper } from "./PostHogWrapper";
+import ProgressBarWrapper from "./ProgressBarWrapper";
 
 const bellota = Bellota({ subsets: ["latin"], weight: ["700"] });
 
@@ -33,12 +34,14 @@ export default function RootLayout({
           <body className={cn(`bg-[#fae3cf] min-h-screen scroll-smooth`)}>
             <QueryProvider>
               <PostHogPageView />
-              <div className="w-full max-w-[778px] mx-auto px-4 py-2">
-                <Navbar />
-                {children}
-                <Footer />
-                <Toaster position="top-center" richColors />
-              </div>
+              <ProgressBarWrapper>
+                <div className="w-full max-w-[778px] mx-auto px-4 py-2">
+                  <Navbar />
+                  {children}
+                  <Footer />
+                  <Toaster position="top-center" richColors />
+                </div>
+              </ProgressBarWrapper>
             </QueryProvider>
           </body>
         </PostHogWrapper>
